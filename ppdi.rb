@@ -14,21 +14,29 @@ array_num = []
 #to define the power item
 num = STDIN.gets.chomp
 pow = num.size
-puts pow
+check_num = 0
+check_ppdi = 0
 
 #We define an object where will collect summary of powered digits
-ppdi = 0
+ppdi = []
 
 #We need to push all digits in array as integers
 arr_num = num.split(//)
-array_num = arr_num.map! {|e| e.to_i}
 
-puts arr_num[1].class
+#Now we need to calculste if the number is ppdi
+for item in arr_num
+	check_num = (item.to_i ** pow)
+	ppdi << check_num
+end
 
-#Now we shoul count our ppdi to compare one with ppdis from the table
-#array_num.each do | value |
-#	value * pow
-	
-#end
+#Now we check if the num is a ppdi
+ppdi.each {|item| check_ppdi += item}
 
-puts array_num
+if check_ppdi == num.to_i  
+	puts "Введенное число #{num} является числом Армстронга"
+else
+	puts "Нет, число #{num} числом Армстронга не является"	
+end
+
+#puts ppdi.join
+
